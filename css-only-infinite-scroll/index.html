@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- https://www.youtube.com/watch?v=Reu0hHbis5w -->
+    <style>
+        :root {
+            --box-width: 18%;
+            --animation-duration: 10s;
+        }
+        .container {
+            width: 80vw;
+            height: 50px;
+            position: relative;
+            margin: 40px auto;
+            overflow: hidden;
+        }
+
+        .container::before, .container::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 100%;
+            position: absolute;
+            z-index: 2;
+        }
+        .container::before{
+            left: 0;
+            background-image: linear-gradient(to right, #ffffffff, #ffffff00);
+        }
+        .container::after {
+            right: 0;
+            background-image: linear-gradient(to left, #ffffffff, #ffffff00);
+        }
+
+        .box {
+            width: var(--box-width);
+            height: 100%;
+            position: absolute;
+            background-color: red;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            color: white;
+            border-radius: 4px;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-duration: var(--animation-duration);
+            animation-name: toLeft;
+        }
+        
+        .container.animate-to-left .box {
+            margin-left: 100%;
+        }
+        .container.animate-to-right .box {
+            animation-direction: reverse;
+            margin-left: calc(var(--box-width) * -1);
+        }
+
+        .box.box-0 {
+            animation-delay: calc(0 * var(--animation-duration) / 5);
+        }
+        .box.box-1 {
+            animation-delay: calc(1 * var(--animation-duration) / 5);
+        }
+        .box.box-2 {
+            animation-delay: calc(2 * var(--animation-duration) / 5);
+        }
+        .box.box-3 {
+            animation-delay: calc(3 * var(--animation-duration) / 5);
+        }
+        .box.box-4 {
+            animation-delay: calc(4 * var(--animation-duration) / 5);
+        }
+        .box.box-5 {
+            animation-delay: calc(5 * var(--animation-duration) / 5);
+        }
+        .box.box-6 {
+            animation-delay: calc(6 * var(--animation-duration) / 5);
+        }
+        .box.box-7 {
+            animation-delay: calc(7 * var(--animation-duration) / 5);
+        }
+
+        @keyframes toLeft {
+            0% {
+                margin-left: 100%;
+            }
+            100% {
+                margin-left: calc(var(--box-width) * -1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container animate-to-left">
+        <div class="box box-0">0</div>
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+        <div class="box box-5">5</div>
+        <div class="box box-6">6</div>
+        <div class="box box-7">7</div>
+    </div>
+    <div class="container animate-to-right">
+        <div class="box box-0">0</div>
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+        <div class="box box-5">5</div>
+        <div class="box box-6">6</div>
+        <div class="box box-7">7</div>
+    </div>
+</body>
+</html>
